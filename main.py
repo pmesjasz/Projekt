@@ -8,11 +8,13 @@ hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 
 app = Flask(__name__)
 api = Api(app)
+
+
 class PeopleCounter(Resource):
     def get(self):
         # load image
         image = cv2.imread('dworzec.jpg')
-        image = cv2.resize(image, (700, 400))
+        image = cv2.resize(image, (800, 400))
 
         # detect people in the image
         (rects, weights) = hog.detectMultiScale(image, winStride=(4, 4), padding=(8, 8), scale=1.05)
